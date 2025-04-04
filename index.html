@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Farmacia LANFRANCO - Su salud es nuestra prioridad</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #1a8754;
+            --secondary-color: #25b06b;
+            --light-color: #e8f5e9;
+            --dark-color: #0d422a;
+            --white: #ffffff;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center; /* Alinea verticalmente el logo y el texto */
+        }
+
+        .logo-image {
+            width: 40px; /* Ajusta el tamaño de la imagen según sea necesario */
+            height: auto; /* Mantén la proporción de aspecto */
+            margin-right: 10px; /* Espacio entre la imagen y el texto */
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        header nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        header nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            color: white;
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: #000000 2px 2px 2px;
+
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-shadow: #000000 2px 2px 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('./img/header.jpg');
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Color oscuro con transparencia */
+            z-index: 1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 83, 53, 0.3);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            background-color: var(--light-color);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .service-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            color: #444;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .contact-text h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p {
+            color: #666;
+        }
+        
+        .contact-map {
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .design-credit {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            font-style: italic;
+        }
+
+        .footer-bottom {
+            position: relative;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Estilo para el botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px; /* Distancia desde el fondo */
+            right: 20px; /* Distancia desde la derecha */
+            width: 60px;
+            height: 60px;
+            background-color: #25d366; /* Color verde de WhatsApp */
+            border-radius: 50%; /* Forma circular */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+            z-index: 1000; /* Asegura que esté sobre otros elementos */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: floatEffect 2s infinite ease-in-out; /* Efecto de "flotación" */
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1); /* Expande el botón al pasar el mouse */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombras más pronunciadas */
+        }
+
+        .whatsapp-float i {
+            color: white; /* Color del ícono */
+            font-size: 2rem; /* Tamaño del ícono */
+        }
+
+        /* Marca de agua */
+        .watermark {
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+        font-size: 0.8rem;
+        color: rgba(128, 128, 128, 0.3); /* Más transparente */
+        z-index: 1000;
+        pointer-events: none;
+        text-shadow: 
+            1px 1px 2px rgba(255, 255, 255, 0.5),
+            -1px -1px 2px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+        font-style: italic;
+    }
+
+        /* Animación de flotación */
+        @keyframes floatEffect {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Sube ligeramente */
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+            }
+            
+            .hero-image {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.2;
+            }
+            
+            .hero-content {
+                text-align: center;
+                max-width: 100%;
+            }
+            
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 350px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./img/logo.png" alt="Logo Farmacia LANFRANCO" class="logo-image">
+                <div class="logo-text">FARMACIA LANFRANCO</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Su salud es nuestra prioridad</h1>
+                <p>En Farmacia LANFRANCO ofrecemos atención personalizada y productos de calidad para el cuidado de su salud y bienestar desde hace más de 25 años.</p>
+                <a href="#contacto" class="btn">Contáctenos</a>
+            </div>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Nuestros Servicios</h2>
+                <p>Ofrecemos una amplia gama de servicios farmacéuticos para satisfacer todas sus necesidades de salud y bienestar.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Dispensación de Medicamentos -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i> <!-- Icono de medicamentos -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Dispensación de Medicamentos</h3>
+                        <p>Contamos con un amplio stock de medicamentos de venta libre y bajo receta, garantizando disponibilidad y calidad.</p>
+                    </div>
+                </div>
+                <!-- Productos de Farmacia -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-first-aid"></i> <!-- Icono de primeros auxilios -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Productos de Farmacia</h3>
+                        <p>Amplio surtido de productos para el cuidado personal, dermocosmética, primeros auxilios y más.</p>
+                    </div>
+                </div>
+                <!-- Asesoramiento Farmacéutico -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i> <!-- Icono de asesoramiento médico -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Asesoramiento Farmacéutico</h3>
+                        <p>Reciba orientación profesional sobre el uso adecuado de medicamentos y productos para el cuidado de la salud.</p>
+                    </div>
+                </div>
+                <!-- Productos Naturales -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i> <!-- Icono de productos naturales -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Productos Naturales</h3>
+                        <p>Gran selección de productos naturales, suplementos, hierbas medicinales y alternativas de bienestar.</p>
+                    </div>
+                </div>
+                <!-- Línea Infantil -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i> <!-- Icono de bebés -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Línea Infantil</h3>
+                        <p>Productos especializados para bebés y niños, con garantía de calidad y seguridad.</p>
+                    </div>
+                </div>
+                <!-- Atención Online -->
+                <div class="service-card scroll-reveal">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-medical"></i> <!-- Icono de atención médica en línea -->
+                    </div>
+                    <div class="service-content">
+                        <h3>Atención Online</h3>
+                        <p>Consultas y pedidos a través de nuestros canales digitales para su mayor comodidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image scroll-reveal">
+                    <img src="./img/fachada.png" alt="Farmacia LANFRANCO">
+                </div>
+                <div class="about-content scroll-reveal">
+                    <h2>Quiénes Somos</h2>
+                    <p>Fundada hace más de 25 años, Farmacia LANFRANCO es sinónimo de confianza y excelencia en el cuidado de la salud.</p>
+                    <p>Nuestro equipo de profesionales farmacéuticos altamente calificados está comprometido en brindar un servicio personalizado y de calidad, siempre velando por el bienestar de nuestros clientes.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            <p>Profesionales con amplia experiencia</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            <p>Productos de calidad garantizada</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            <p>Atención personalizada</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">✓</div>
+                            <p>Instalaciones modernas y confortables</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-title scroll-reveal">
+                <h2>Contáctenos</h2>
+                <p>Estamos a su disposición para atender sus consultas y necesidades. No dude en comunicarse con nosotros.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info scroll-reveal">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Dirección</h4>
+                            <p>San García de Sequeira 5712, X5020 Córdoba</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Teléfono</h4>
+                            <p>+54 351 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@farmacialanfranco.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-text">
+                            <h4>Horario de Atención</h4>
+                            <p><strong>Lunes a Sábados</strong></p>
+                            <p>Mañana: 9:00 - 13:00</p>
+                            <p>Tarde: 17:00 - 21:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map scroll-reveal">
+                    <!-- Aquí va el iframe de Google Maps -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1701.6044748063875!2d-64.1116830079358!3d-31.46343782490981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432bd0060a795fd%3A0x9efdefcf740c91cb!2sLANFRANCO!5e0!3m2!1ses!2sar!4v1743771637925!5m2!1ses!2sar" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Farmacia LANFRANCO</h3>
+                    <p>Su farmacia de confianza, dedicada a cuidar su salud y bienestar con profesionalismo y calidez humana.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=100069003336622" target="_blank" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/5493513127435" target="_blank" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="tel:5493513127435" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                        <a href="https://www.instagram.com/lanfrancofarmacia/" target="_blank" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Servicios</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Dispensación de Medicamentos</a></li>
+                        <li><a href="#">Vacunación</a></li>
+                        <li><a href="#">Control de Presión</a></li>
+                        <li><a href="#">Asesoramiento Farmacéutico</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="design-credit">
+                    <i class="fas fa-code"></i> Diseñado por Fabrixx
+                </div>
+                <p>&copy; 2025 Farmacia LANFRANCO. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('active');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            
+            // Initialize
+            handleScrollAnimation();
+            
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Sticky Header
+            const header = document.querySelector('header');
+            const scrollWatcher = () => {
+                if (window.scrollY > 10) {
+                    header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                    header.style.padding = '5px 0';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.padding = '15px 0';
+                }
+            };
+            
+            window.addEventListener('scroll', scrollWatcher);
+        });
+    </script>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5493513127435" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+</body>
+</html>
