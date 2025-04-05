@@ -1,0 +1,16 @@
+{
+    "ofertas": [
+        {
+            "titulo": "Vitaminas 30% descuento",
+            "descripcion": "Descuento en toda la línea de vitaminas este mes",
+            "imagen": "img/ofertas/vitaminas.jpg",
+            "etiqueta": "30% OFF"
+        }
+    ],
+    "novedades": [
+        {
+            "titulo": "Nuevo horario de atención",
+            "descripcion": "Ahora abrimos los sábados por la mañana"
+        }
+    ]
+}

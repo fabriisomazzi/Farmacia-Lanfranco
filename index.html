@@ -266,17 +266,79 @@
             align-items: center;
         }
         
-        .about-image {
+        /* Estilos para el carrusel */
+        .carousel-container {
             position: relative;
+            width: 100%;
             height: 450px;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .about-image img {
+        .carousel-slide {
+            display: flex;
             width: 100%;
             height: 100%;
+        }
+        
+        .carousel-slide img {
+            min-width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.7);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        #prevBtn {
+            left: 20px;
+        }
+        
+        #nextBtn {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: var(--white);
+            transform: scale(1.2);
         }
         
         .about-content h2 {
@@ -479,6 +541,132 @@
             font-size: 2rem; /* Tamaño del ícono */
         }
 
+        /* Modal de Bienvenida */
+        .welcome-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInModal 0.5s ease;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: slideUp 0.5s ease;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .offer-card {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .offer-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .offer-content {
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .offer-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .offer-content p {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .offer-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .news-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-item h4 {
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+        
+        .news-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .modal-footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        
         /* Marca de agua */
         .watermark {
         position: fixed;
@@ -513,6 +701,24 @@
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+            }
+            to {
                 transform: translateY(0);
             }
         }
@@ -562,12 +768,25 @@
                 grid-template-columns: 1fr;
             }
             
-            .about-image {
+            .carousel-container {
                 height: 350px;
             }
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .offer-card {
+                flex-direction: column;
+            }
+            
+            .offer-image {
+                width: 100%;
+                height: 120px;
             }
         }
     </style>
@@ -679,8 +898,19 @@
     <section class="about" id="nosotros">
         <div class="container">
             <div class="about-grid">
-                <div class="about-image scroll-reveal">
-                    <img src="./img/fachada.png" alt="Farmacia LANFRANCO">
+                <div class="carousel-container scroll-reveal">
+                    <div class="carousel-slide">
+                        <img src="./img/carrosusel/fachada.png" alt="Fachada de Farmacia LANFRANCO">
+                        <img src="./img/carrosusel/interior.png" alt="Interior de la farmacia">
+                        <img src="./img/carrosusel/vitrina.png" alt="Equipo de Farmacia LANFRANCO">
+                    </div>
+                    <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
                 </div>
                 <div class="about-content scroll-reveal">
                     <h2>Quiénes Somos</h2>
@@ -816,6 +1046,56 @@
         </div>
     </footer>
 
+    <!-- Modal de Bienvenida -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-modal">&times;</span>
+                <h2>¡Bienvenido a Farmacia LANFRANCO!</h2>
+                <p>Su salud es nuestra prioridad</p>
+            </div>
+            <div class="modal-body">
+                <h3>Ofertas Especiales</h3>
+                <div class="offer-card">
+                    <img src="./img/oferta1.jpg" alt="Oferta 1" class="offer-image">
+                    <div class="offer-content">
+                        <span class="offer-tag">30% DESCUENTO</span>
+                        <h3>Vitaminas y Suplementos</h3>
+                        <p>Aprovecha nuestro descuento especial en toda la línea de vitaminas y suplementos durante este mes.</p>
+                    </div>
+                </div>
+                <div class="offer-card">
+                    <img src="./img/oferta2.jpg" alt="Oferta 2" class="offer-image">
+                    <div class="offer-content">
+                        <span class="offer-tag">2x1</span>
+                        <h3>Cuidado de la Piel</h3>
+                        <p>Lleva dos productos de nuestra línea dermocosmética y paga solo uno. Promoción válida hasta agotar stock.</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Novedades</h3>
+                <div class="news-item">
+                    <h4>Nuevo Horario de Atención</h4>
+                    <p>Ahora atendemos también los sábados por la mañana de 9:00 a 13:00 hs.</p>
+                </div>
+                <div class="news-item">
+                    <h4>Servicio de Vacunación</h4>
+                    <p>Contamos con nuevo servicio de vacunación para toda la familia. Pide tu turno ahora.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="closeModalBtn">Continuar al sitio</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5493513127435" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <script>
         // Scroll Animation
         document.addEventListener('DOMContentLoaded', function() {
@@ -871,15 +1151,115 @@
             };
             
             window.addEventListener('scroll', scrollWatcher);
+            
+            // Carrusel de imágenes
+            const carouselSlide = document.querySelector('.carousel-slide');
+            const images = document.querySelectorAll('.carousel-slide img');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            let counter = 0;
+            const size = images[0].clientWidth;
+            
+            // Configuración inicial
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+            
+            // Event listeners para botones
+            nextBtn.addEventListener('click', () => {
+                if (counter >= images.length - 1) return;
+                carouselSlide.style.transition = "transform 0.5s ease-in-out";
+                counter++;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                updateIndicators();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (counter <= 0) return;
+                carouselSlide.style.transition = "transform 0.5s ease-in-out";
+                counter--;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                updateIndicators();
+            });
+            
+            // Loop infinito
+            carouselSlide.addEventListener('transitionend', () => {
+                if (images[counter].id === 'lastClone') {
+                    carouselSlide.style.transition = "none";
+                    counter = images.length - 2;
+                    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                }
+                if (images[counter].id === 'firstClone') {
+                    carouselSlide.style.transition = "none";
+                    counter = images.length - counter;
+                    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                }
+            });
+            
+            // Indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    carouselSlide.style.transition = "transform 0.5s ease-in-out";
+                    counter = index;
+                    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                    updateIndicators();
+                });
+            });
+            
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    if (index === counter) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Auto slide cada 5 segundos
+            setInterval(() => {
+                if (counter >= images.length - 1) return;
+                carouselSlide.style.transition = "transform 0.5s ease-in-out";
+                counter++;
+                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+                updateIndicators();
+            }, 5000);
+            
+            // Modal de Bienvenida
+            const welcomeModal = document.getElementById('welcomeModal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const closeModalFooterBtn = document.getElementById('closeModalBtn');
+            
+            // Mostrar modal al cargar la página (solo si no se ha mostrado antes en esta sesión)
+            if (!sessionStorage.getItem('modalShown')) {
+                setTimeout(() => {
+                    welcomeModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Evita el scroll cuando el modal está abierto
+                }, 1000);
+                sessionStorage.setItem('modalShown', 'true');
+            }
+            
+            // Cerrar modal al hacer clic en la X
+            closeModalBtn.addEventListener('click', () => {
+                welcomeModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar modal al hacer clic en el botón del footer
+            closeModalFooterBtn.addEventListener('click', () => {
+                welcomeModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            welcomeModal.addEventListener('click', (e) => {
+                if (e.target === welcomeModal) {
+                    welcomeModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
         });
     </script>
-
-    <!-- WhatsApp Floating Button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/5493513127435" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
 
 </body>
 </html>
